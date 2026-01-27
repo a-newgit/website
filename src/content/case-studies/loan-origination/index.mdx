@@ -1,0 +1,89 @@
+---
+title: "Reducing friction, restoring flow"
+subtitle: "Redesigning the loan origination experience"
+client: "Direct Sales Agent App"
+role: "Product Designer"
+year: "2024"
+duration: "3 months"
+team: "2 designers, 4 engineers"
+platform: "iOS, Android"
+tools: ["Figma", "Miro", "Maze"]
+summary: "Redesigned the loan origination flow, saving 5 minutes per customer interaction."
+tags: ["Mobile", "Fintech", "Flow Optimization"]
+style: "visual"
+draft: false
+---
+
+import Section from "../../../components/mdx/Section.astro";
+import TwoColumn from "../../../components/mdx/TwoColumn.astro";
+import Callout from "../../../components/mdx/Callout.astro";
+import PullQuote from "../../../components/mdx/PullQuote.astro";
+import PhaseBlock from "../../../components/mdx/PhaseBlock.astro";
+import Stats from "../../../components/mdx/Stats.astro";
+
+<Section label="CONTEXT" title="Where the River Stalled">
+<TwoColumn>
+  <div slot="left">
+    Direct Sales Agents (DSAs) were the bridge between customers and home loans.
+    But friction had built up at every turn—repetitive data entry, confusing settlement
+    calculations, and a flow that demanded expertise rather than supported it.
+
+    I was brought in to redesign the core loan origination experience.
+
+  </div>
+  <Callout slot="right" title="Business Impact">
+    - High drop-off rates at application stage
+    - 40% of agent time spent on repetitive data entry
+    - Customer complaints about slow processing
+  </Callout>
+</TwoColumn>
+</Section>
+
+<Section label="RESEARCH" title="Mapping the Currents">
+  Conducted field research with 15 DSAs across 4 cities, observing their daily
+  workflows and pain points. The findings revealed friction at every step of the
+  loan journey.
+</Section>
+
+<PullQuote>
+  Each observation felt like tracing a tributary—understanding how effort
+  fragmented before it reached momentum.
+</PullQuote>
+
+<Section label="SOLUTION" title="Re-engineering the Flow">
+<PhaseBlock phase="1" title="Structured Settlement by State">
+  Redesigned the settlement calculator with state-specific logic, eliminating the need
+  for agents to manually reference policy documents. The system now surfaces the right
+  fields automatically based on loan type and location.
+</PhaseBlock>
+
+<PhaseBlock phase="2" title="Progressive Simplification">
+  Introduced a step-by-step flow that reveals complexity only when needed.
+  Advanced options are tucked away for experts, while the default path guides
+  new agents through the process.
+</PhaseBlock>
+
+<PhaseBlock phase="3" title="Smart Defaults">
+  Analyzed thousands of past applications to identify patterns. Common values are now
+  pre-filled, and the system learns from each agent's preferences over time.
+</PhaseBlock>
+</Section>
+
+<PullQuote>Every 5 minutes saved meant 5 more customers served.</PullQuote>
+
+<Section label="OUTCOMES" title="When Flow Gains Momentum">
+  <Stats
+    items={[
+      { value: "5 min", label: "saved per interaction" },
+      { value: "40%", label: "reduction in errors" },
+      { value: "4.5★", label: "agent satisfaction" },
+    ]}
+  />
+</Section>
+
+<Section label="REFLECTION" title="The Quiet Power of Alignment">
+  What started as a usability problem revealed itself as an alignment challenge.
+  The old flow assumed expertise; the new flow builds it. By meeting agents
+  where they are, we made the complex feel simple—and that simplicity compounds
+  with every interaction.
+</Section>

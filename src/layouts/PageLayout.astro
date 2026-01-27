@@ -1,0 +1,59 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  wide?: boolean;
+}
+
+const { title, description, image, wide = false } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} image={image}>
+  <Header />
+  <main class:list={["main", { wide }]}>
+    <slot />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .main {
+    min-height: calc(100vh - 200px);
+    padding: var(--space-8) 0 var(--space-16);
+  }
+
+  .main:not(.wide) {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  .main.wide {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  @media (min-width: 640px) {
+    .main:not(.wide),
+    .main.wide {
+      padding-left: var(--space-6);
+      padding-right: var(--space-6);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .main:not(.wide),
+    .main.wide {
+      padding-left: var(--space-8);
+      padding-right: var(--space-8);
+    }
+  }
+</style>

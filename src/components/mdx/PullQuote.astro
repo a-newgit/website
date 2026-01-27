@@ -1,0 +1,33 @@
+---
+
+---
+
+<blockquote class="pull-quote">
+  <slot />
+</blockquote>
+
+<style>
+  .pull-quote {
+    font-size: var(--text-2xl);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--color-text);
+    text-align: center;
+    margin: var(--space-16) auto;
+    padding: 0 var(--space-8);
+    max-width: 36rem;
+    border: none;
+  }
+
+  .pull-quote :global(p) {
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .pull-quote {
+      font-size: var(--text-3xl);
+      padding: 0 var(--space-12);
+    }
+  }
+</style>

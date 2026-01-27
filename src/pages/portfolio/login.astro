@@ -1,0 +1,52 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import PasswordForm from "../../components/PasswordForm.astro";
+import { verifyAuth } from "../../lib/auth";
+
+export const prerender = false;
+
+const token = Astro.cookies.get("portfolio_auth")?.value;
+const isAuthenticated = await verifyAuth(token);
+
+if (isAuthenticated) {
+  return Astro.redirect("/portfolio");
+}
+
+const error = Astro.url.searchParams.get("error");
+const errorMessage = error === "invalid" ? "Invalid password. Please try again." : undefined;
+---
+
+<PageLayout title="Portfolio Login" description="Enter password to view portfolio">
+  <div class="login-page">
+    <h1 class="login-title">Portfolio</h1>
+    <p class="login-description">
+      This portfolio contains detailed case studies of my work. Enter the password
+      to continue.
+    </p>
+    <PasswordForm error={errorMessage} />
+  </div>
+</PageLayout>
+
+<style>
+  .login-page {
+    max-width: 28rem;
+    margin: var(--space-8) auto;
+    text-align: center;
+  }
+
+  .login-title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .login-description {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-8);
+  }
+
+  .login-page :global(.password-form) {
+    text-align: left;
+    margin: 0 auto;
+  }
+</style>

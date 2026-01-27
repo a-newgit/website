@@ -1,0 +1,128 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import Timeline from "../components/Timeline.astro";
+import { getCollection } from "astro:content";
+
+const caseStudies = await getCollection("case-studies", ({ data }) => !data.draft);
+const recentStudies = caseStudies.slice(0, 3);
+---
+
+<BaseLayout title="Design Portfolio" description="Product designer specializing in complex systems and user-centered design.">
+  <Header />
+  <main class="main container">
+    <Hero
+      name="Your Name"
+      role="Product Designer"
+      intro="I design products that help people do complex things simply. Currently focused on fintech and enterprise tools, I bring clarity to ambiguous problems through research-driven design."
+    />
+
+    <Timeline />
+
+    {
+      recentStudies.length > 0 && (
+        <section class="portfolio-teaser">
+          <div class="teaser-header">
+            <h2>Selected Work</h2>
+            <a href="/portfolio" class="teaser-link">
+              View all work
+            </a>
+          </div>
+          <div class="teaser-grid">
+            {recentStudies.map((study) => (
+              <article class="teaser-card">
+                <span class="teaser-meta">
+                  {study.data.role} · {study.data.year}
+                </span>
+                <h3 class="teaser-title">{study.data.title}</h3>
+                <p class="teaser-summary">{study.data.summary}</p>
+              </article>
+            ))}
+          </div>
+          <a href="/portfolio" class="btn btn-outline portfolio-cta">
+            Explore portfolio
+          </a>
+        </section>
+      )
+    }
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .main {
+    padding-bottom: var(--space-16);
+  }
+
+  .portfolio-teaser {
+    padding: var(--space-12) 0;
+    border-top: 1px solid var(--color-border-subtle);
+  }
+
+  .teaser-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: var(--space-8);
+  }
+
+  .teaser-header h2 {
+    font-size: var(--text-2xl);
+    margin: 0;
+  }
+
+  .teaser-link {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .teaser-grid {
+    display: grid;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .teaser-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .teaser-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .teaser-card {
+    padding: var(--space-6);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+  }
+
+  .teaser-meta {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    display: block;
+    margin-bottom: var(--space-2);
+  }
+
+  .teaser-title {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-2);
+  }
+
+  .teaser-summary {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .portfolio-cta {
+    display: inline-flex;
+  }
+</style>

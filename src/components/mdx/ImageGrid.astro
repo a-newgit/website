@@ -1,0 +1,63 @@
+---
+interface Props {
+  images: string[];
+  cols?: 2 | 3 | 4;
+  caption?: string;
+}
+
+const { images, cols = 2, caption } = Astro.props;
+---
+
+<figure class="image-grid">
+  <div class:list={["grid", `cols-${cols}`]}>
+    {images.map((src, i) => <img src={src} alt={`Image ${i + 1}`} loading="lazy" />)}
+  </div>
+  {caption && <figcaption class="caption">{caption}</figcaption>}
+</figure>
+
+<style>
+  .image-grid {
+    margin: var(--space-8) 0;
+  }
+
+  .grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .grid.cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid.cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid.cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 640px) {
+    .grid.cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid.cols-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .grid img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .caption {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-align: center;
+    margin-top: var(--space-3);
+  }
+</style>

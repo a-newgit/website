@@ -1,0 +1,101 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import CaseStudyCard from "../../components/CaseStudyCard.astro";
+import { getCollection } from "astro:content";
+import { verifyAuth } from "../../lib/auth";
+
+export const prerender = false;
+
+const token = Astro.cookies.get("portfolio_auth")?.value;
+const isAuthenticated = await verifyAuth(token);
+
+if (!isAuthenticated) {
+  return Astro.redirect("/portfolio/login");
+}
+
+const caseStudies = await getCollection("case-studies", ({ data }) => !data.draft);
+const sortedStudies = caseStudies.sort((a, b) => {
+  const yearA = parseInt(a.data.year.split("-")[0]);
+  const yearB = parseInt(b.data.year.split("-")[0]);
+  return yearB - yearA;
+});
+---
+
+<PageLayout title="Portfolio" description="Design case studies and project work." wide>
+  <header class="portfolio-header">
+    <h1 class="portfolio-title">Portfolio</h1>
+    <p class="portfolio-intro">
+      A collection of case studies exploring how design can solve complex problems.
+      Each project represents a journey from ambiguity to clarity.
+    </p>
+    <form action="/api/logout" method="POST" class="logout-form">
+      <button type="submit" class="logout-btn">Log out</button>
+    </form>
+  </header>
+
+  <div class="portfolio-grid">
+    {
+      sortedStudies.map((study) => (
+        <CaseStudyCard
+          title={study.data.title}
+          summary={study.data.summary}
+          slug={study.id}
+          role={study.data.role}
+          year={study.data.year}
+          tags={study.data.tags}
+          coverImage={study.data.coverImage}
+        />
+      ))
+    }
+  </div>
+</PageLayout>
+
+<style>
+  .portfolio-header {
+    margin-bottom: var(--space-12);
+    position: relative;
+  }
+
+  .portfolio-title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .portfolio-intro {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    max-width: 36rem;
+  }
+
+  .logout-form {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .logout-btn {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+    text-decoration: underline;
+  }
+
+  .logout-btn:hover {
+    color: var(--color-text);
+  }
+
+  .portfolio-grid {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

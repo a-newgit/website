@@ -1,0 +1,72 @@
+---
+interface Props {
+  title: string;
+  type?: "default" | "insight" | "warning";
+}
+
+const { title, type = "default" } = Astro.props;
+---
+
+<aside class:list={["callout", type]}>
+  <p class="callout-title">{title}</p>
+  <div class="callout-content">
+    <slot />
+  </div>
+</aside>
+
+<style>
+  .callout {
+    margin: var(--space-6) 0;
+    padding: var(--space-5);
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-border);
+  }
+
+  .callout.insight {
+    background-color: #f8f9fa;
+    border-left-color: #6c757d;
+  }
+
+  .callout.warning {
+    background-color: #fff8e6;
+    border-left-color: #ffc107;
+  }
+
+  .callout-title {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+  }
+
+  .callout-content {
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  .callout-content :global(p) {
+    margin-bottom: var(--space-2);
+  }
+
+  .callout-content :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .callout-content :global(ul),
+  .callout-content :global(ol) {
+    margin: 0;
+    padding-left: var(--space-4);
+  }
+
+  .callout-content :global(li) {
+    margin-bottom: var(--space-1);
+  }
+
+  .callout-content :global(li:last-child) {
+    margin-bottom: 0;
+  }
+</style>

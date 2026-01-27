@@ -1,0 +1,50 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import NoteCard from "../../components/NoteCard.astro";
+import { getCollection } from "astro:content";
+
+const notes = await getCollection("notes", ({ data }) => !data.draft);
+const sortedNotes = notes.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<PageLayout title="Notes" description="Thoughts on design, research, and building products.">
+  <h1 class="page-title">Notes</h1>
+  <p class="page-intro">
+    Thoughts on design, research, and building products. Less polished than case
+    studies, more useful for thinking out loud.
+  </p>
+
+  <div class="notes-list">
+    {
+      sortedNotes.map((note) => (
+        <NoteCard
+          title={note.data.title}
+          description={note.data.description}
+          slug={note.id}
+          pubDate={note.data.pubDate}
+          tags={note.data.tags}
+        />
+      ))
+    }
+  </div>
+</PageLayout>
+
+<style>
+  .page-title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .page-intro {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-10);
+    max-width: 36rem;
+  }
+
+  .notes-list {
+    border-top: 1px solid var(--color-border-subtle);
+  }
+</style>

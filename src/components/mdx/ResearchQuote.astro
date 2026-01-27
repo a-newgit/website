@@ -1,0 +1,41 @@
+---
+interface Props {
+  participant?: string;
+}
+
+const { participant } = Astro.props;
+---
+
+<blockquote class="research-quote">
+  <p class="quote-text">
+    <slot />
+  </p>
+  {participant && <cite class="quote-attribution">&mdash; {participant}</cite>}
+</blockquote>
+
+<style>
+  .research-quote {
+    margin: var(--space-8) 0;
+    padding: var(--space-6);
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-md);
+    border: none;
+  }
+
+  .quote-text {
+    font-size: var(--text-lg);
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .quote-attribution {
+    display: block;
+    margin-top: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-style: normal;
+    color: var(--color-text-muted);
+  }
+</style>

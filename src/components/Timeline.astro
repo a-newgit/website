@@ -1,0 +1,46 @@
+---
+import TimelineEntry from "./TimelineEntry.astro";
+import timelineData from "../content/timeline.json";
+
+interface TimelineItem {
+  company: string;
+  role: string;
+  years: string;
+  description: string;
+  highlights?: string[];
+}
+
+const timeline: TimelineItem[] = timelineData;
+---
+
+<section class="timeline-section">
+  <h2 class="timeline-title">Experience</h2>
+  <div class="timeline">
+    {
+      timeline.map((item) => (
+        <TimelineEntry
+          company={item.company}
+          role={item.role}
+          years={item.years}
+          description={item.description}
+          highlights={item.highlights}
+        />
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .timeline-section {
+    padding: var(--space-12) 0;
+  }
+
+  .timeline-title {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-8);
+  }
+
+  .timeline {
+    max-width: 36rem;
+  }
+</style>

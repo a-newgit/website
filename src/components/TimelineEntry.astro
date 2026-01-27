@@ -1,0 +1,112 @@
+---
+interface Props {
+  company: string;
+  role: string;
+  years: string;
+  description: string;
+  highlights?: string[];
+}
+
+const { company, role, years, description, highlights = [] } = Astro.props;
+---
+
+<article class="timeline-entry">
+  <div class="timeline-marker"></div>
+  <div class="timeline-content">
+    <div class="timeline-header">
+      <h3 class="timeline-company">{company}</h3>
+      <span class="timeline-years">{years}</span>
+    </div>
+    <p class="timeline-role">{role}</p>
+    <p class="timeline-description">{description}</p>
+    {
+      highlights.length > 0 && (
+        <ul class="timeline-highlights">
+          {highlights.map((highlight) => (
+            <li>{highlight}</li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .timeline-entry {
+    position: relative;
+    padding-left: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+
+  .timeline-entry:last-child {
+    padding-bottom: 0;
+  }
+
+  .timeline-marker {
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+  }
+
+  .timeline-entry:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 1.25rem;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--color-border);
+  }
+
+  .timeline-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-1);
+  }
+
+  .timeline-company {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .timeline-years {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .timeline-role {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-2);
+  }
+
+  .timeline-description {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-3);
+  }
+
+  .timeline-highlights {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin: 0;
+    padding-left: var(--space-4);
+  }
+
+  .timeline-highlights li {
+    margin-bottom: var(--space-1);
+  }
+
+  .timeline-highlights li:last-child {
+    margin-bottom: 0;
+  }
+</style>

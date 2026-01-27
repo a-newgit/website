@@ -1,0 +1,66 @@
+---
+interface Props {
+  before: string;
+  after: string;
+  beforeLabel?: string;
+  afterLabel?: string;
+  beforeAlt?: string;
+  afterAlt?: string;
+}
+
+const {
+  before,
+  after,
+  beforeLabel = "Before",
+  afterLabel = "After",
+  beforeAlt = "Before state",
+  afterAlt = "After state",
+} = Astro.props;
+---
+
+<div class="before-after">
+  <figure class="comparison-item">
+    <span class="comparison-label">{beforeLabel}</span>
+    <img src={before} alt={beforeAlt} loading="lazy" />
+  </figure>
+  <figure class="comparison-item">
+    <span class="comparison-label">{afterLabel}</span>
+    <img src={after} alt={afterAlt} loading="lazy" />
+  </figure>
+</div>
+
+<style>
+  .before-after {
+    display: grid;
+    gap: var(--space-4);
+    margin: var(--space-8) 0;
+  }
+
+  @media (min-width: 640px) {
+    .before-after {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .comparison-item {
+    margin: 0;
+  }
+
+  .comparison-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    display: block;
+    margin-bottom: var(--space-2);
+  }
+
+  .comparison-item img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-subtle);
+  }
+</style>

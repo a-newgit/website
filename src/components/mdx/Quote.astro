@@ -1,0 +1,53 @@
+---
+interface Props {
+  author: string;
+  role?: string;
+}
+
+const { author, role } = Astro.props;
+---
+
+<blockquote class="quote">
+  <p class="quote-text">
+    <slot />
+  </p>
+  <footer class="quote-footer">
+    <cite class="quote-author">{author}</cite>
+    {role && <span class="quote-role">{role}</span>}
+  </footer>
+</blockquote>
+
+<style>
+  .quote {
+    margin: var(--space-8) 0;
+    padding: var(--space-6);
+    border-left: 3px solid var(--color-accent);
+    background-color: var(--color-surface);
+  }
+
+  .quote-text {
+    font-size: var(--text-lg);
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  .quote-footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .quote-author {
+    font-size: var(--text-base);
+    font-weight: 600;
+    font-style: normal;
+    color: var(--color-text);
+  }
+
+  .quote-role {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+</style>

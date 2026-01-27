@@ -1,0 +1,51 @@
+---
+interface Props {
+  ratio?: "equal" | "wide-left" | "wide-right";
+}
+
+const { ratio = "equal" } = Astro.props;
+---
+
+<div class:list={["two-column", ratio]}>
+  <div class="column left">
+    <slot name="left" />
+  </div>
+  <div class="column right">
+    <slot name="right" />
+  </div>
+</div>
+
+<style>
+  .two-column {
+    display: grid;
+    gap: var(--space-8);
+    margin: var(--space-8) 0;
+  }
+
+  @media (min-width: 768px) {
+    .two-column.equal {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .two-column.wide-left {
+      grid-template-columns: 2fr 1fr;
+    }
+
+    .two-column.wide-right {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
+
+  .column {
+    font-size: var(--text-base);
+    line-height: 1.8;
+  }
+
+  .column :global(p) {
+    margin-bottom: var(--space-4);
+  }
+
+  .column :global(p:last-child) {
+    margin-bottom: 0;
+  }
+</style>

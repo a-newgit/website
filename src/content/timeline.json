@@ -1,0 +1,30 @@
+[
+  {
+    "company": "Company Name",
+    "role": "Senior Product Designer",
+    "years": "2022 - Present",
+    "description": "Leading design for core product features and establishing design systems.",
+    "highlights": [
+      "Built design system from scratch",
+      "Led team of 3 designers",
+      "Shipped 10+ major features"
+    ]
+  },
+  {
+    "company": "Previous Company",
+    "role": "Product Designer",
+    "years": "2019 - 2022",
+    "description": "Designed end-to-end experiences for mobile and web applications.",
+    "highlights": ["Redesigned core user flow", "Improved conversion by 25%"]
+  },
+  {
+    "company": "Earlier Role",
+    "role": "UX Designer",
+    "years": "2017 - 2019",
+    "description": "Started my design career focusing on user research and interaction design.",
+    "highlights": [
+      "Conducted 50+ user interviews",
+      "Created design documentation"
+    ]
+  }
+]

@@ -1,0 +1,93 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  pubDate: Date;
+  tags?: string[];
+}
+
+const { title, description, slug, pubDate, tags = [] } = Astro.props;
+
+const formattedDate = pubDate.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+---
+
+<article class="note-card">
+  <a href={`/notes/${slug}`} class="card-link">
+    <time class="card-date" datetime={pubDate.toISOString()}>{formattedDate}</time>
+    <h3 class="card-title">{title}</h3>
+    <p class="card-description">{description}</p>
+    {
+      tags.length > 0 && (
+        <div class="card-tags">
+          {tags.map((tag) => (
+            <span class="card-tag">{tag}</span>
+          ))}
+        </div>
+      )
+    }
+  </a>
+</article>
+
+<style>
+  .note-card {
+    padding: var(--space-6) 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .note-card:first-child {
+    padding-top: 0;
+  }
+
+  .note-card:last-child {
+    border-bottom: none;
+  }
+
+  .card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card-date {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    display: block;
+    margin-bottom: var(--space-2);
+  }
+
+  .card-title {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+    transition: color var(--transition-fast);
+  }
+
+  .card-link:hover .card-title {
+    color: var(--color-accent-hover);
+  }
+
+  .card-description {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-3);
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .card-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+</style>
