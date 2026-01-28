@@ -6,7 +6,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://your-site.netlify.app",
+  site: "https://www.agnimitrapathak.com",
   output: "static",
   adapter: netlify(),
   integrations: [

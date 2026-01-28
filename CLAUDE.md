@@ -8,6 +8,7 @@
 - `npm run lint` — Run ESLint
 - `npm run lint:fix` — Run ESLint with auto-fix
 - `npm run format` — Run Prettier
+- `npm run screenshots` — Capture baseline screenshots (requires dev server running)
 
 ## Architecture
 
