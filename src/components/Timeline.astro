@@ -4,26 +4,26 @@ import timelineData from "../content/timeline.json";
 
 interface TimelineItem {
   company: string;
+  url?: string;
   role: string;
   years: string;
-  description: string;
-  highlights?: string[];
+  color?: string;
 }
 
 const timeline: TimelineItem[] = timelineData;
 ---
 
 <section class="timeline-section">
-  <span class="section-label">Experience</span>
+  <span class="section-label">Work experience</span>
   <div class="timeline">
     {
       timeline.map((item) => (
         <TimelineEntry
           company={item.company}
+          url={item.url}
           role={item.role}
           years={item.years}
-          description={item.description}
-          highlights={item.highlights}
+          color={item.color}
         />
       ))
     }
@@ -32,19 +32,15 @@ const timeline: TimelineItem[] = timelineData;
 
 <style>
   .timeline-section {
-    padding: var(--space-6) 0 var(--space-8);
-    border-top: 1px solid var(--color-border-subtle);
+    padding: var(--space-8) 0;
   }
 
   .section-label {
     display: block;
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    font-size: var(--text-sm);
     color: var(--color-text-muted);
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-4);
+    font-weight: 400;
   }
 
   .timeline {

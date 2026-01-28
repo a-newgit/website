@@ -25,15 +25,17 @@ const { title, description, image } = Astro.props;
 <style>
   .skip-link {
     position: absolute;
-    top: -40px;
+    top: 0;
     left: 0;
     background: var(--color-text);
     color: var(--color-bg);
     padding: var(--space-2) var(--space-4);
     z-index: 1000;
     text-decoration: none;
+    transform: translateY(-100%);
+    transition: transform var(--transition-fast);
   }
   .skip-link:focus {
-    top: 0;
+    transform: translateY(0);
   }
 </style>

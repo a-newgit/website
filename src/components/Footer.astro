@@ -4,51 +4,53 @@ const currentYear = new Date().getFullYear();
 
 <footer class="footer">
   <div class="container footer-content">
-    <p class="copyright">&copy; {currentYear}</p>
-    <nav class="footer-nav">
-      <a href="mailto:agnimitra.vr@gmail.com">Email</a>
-      <a
-        href="https://www.linkedin.com/in/agnimitrapathak"
-        target="_blank"
-        rel="noopener">LinkedIn</a
+    <div class="signature">
+      <svg
+        width="120"
+        height="40"
+        viewBox="0 0 120 40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Agnimitra Pathak signature"
       >
-    </nav>
+        <path
+          d="M8 28c2-8 6-16 12-20 4-3 8-2 10 2 1 3-1 8-4 12-2 3-5 6-8 7-2 1-3 0-3-2 1-3 4-7 8-10m15 8c-1 3-2 5-1 6 1 1 3-1 5-4m-8 1c2-4 5-8 8-10 2-1 3 0 2 2-1 3-3 6-5 8m12-8c-2 4-4 8-3 10 1 1 3-1 5-4m-6 1c3-5 6-9 9-11 2-1 3 0 2 2-2 4-4 7-6 9m15-10c-4 6-7 11-6 13 1 1 4-2 7-6m-10 3c4-6 8-11 11-13 2-1 2 0 1 2-2 4-5 8-8 11"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          fill="none"></path>
+      </svg>
+    </div>
+    <p class="copyright">&copy; {currentYear}</p>
   </div>
 </footer>
 
 <style>
   .footer {
     margin-top: auto;
-    padding: var(--space-8) 0;
-    border-top: 1px solid var(--color-border-subtle);
+    padding: var(--space-10) 0 var(--space-8);
   }
 
   .footer-content {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: var(--space-4);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .signature {
+    color: var(--color-text-muted);
+    opacity: 0.6;
+  }
+
+  .signature svg {
+    display: block;
   }
 
   .copyright {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
     margin: 0;
-  }
-
-  .footer-nav {
-    display: flex;
-    gap: var(--space-6);
-  }
-
-  .footer-nav a {
-    font-size: var(--text-sm);
-    color: var(--color-text-secondary);
-    text-decoration: none;
-  }
-
-  .footer-nav a:hover {
-    color: var(--color-text);
   }
 </style>

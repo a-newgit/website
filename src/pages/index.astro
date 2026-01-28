@@ -4,153 +4,46 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Hero from "../components/Hero.astro";
 import Timeline from "../components/Timeline.astro";
-import { getCollection } from "astro:content";
-
-const caseStudies = await getCollection(
-  "case-studies",
-  ({ data }) => !data.draft,
-);
-const recentStudies = caseStudies.slice(0, 3);
 ---
 
 <BaseLayout
-  title="Agnimitra Pathak — AI & Digital Product Designer"
-  description="AI and Digital Product Designer specializing in enterprise SaaS, data, and finance domains. Building clarity from complex systems."
+  title="Agnimitra Pathak — Product Designer"
+  description="Product Designer who has worked across data and finance domains in enterprise SaaS space."
 >
   <Header />
-  <main class="main container">
-    <Hero name="Agnimitra Pathak" role="AI and Digital Product Designer">
+  <main id="main-content" class="main container">
+    <Hero name="Agnimitra Pathak" photo="/images/Photo.jpeg">
       <p>
-        I'm a designer who has worked across data and finance domains in the
-        enterprise SaaS space. Before becoming a full-time designer, I started
-        my own company, <a
+        I am a product designer who has worked across data and finance domains
+        in enterprise SaaS space. Before being a full time designer, I started
+        my own company called <a
           href="https://yourstory.com/2014/02/airstream-io-150000-downloads"
           target="_blank"
           rel="noopener">Nityaa Labs</a
-        >.
+        >!
       </p>
       <p>
-        I like working on intricate systems, unfolding relationships between
-        them to visualize the larger picture. I believe that apart from crafting
-        great experiences, choosing the right problem is equally important.
+        I like working on intricate systems unfolding relationships between them
+        to visualize the larger picture.
+      </p>
+      <p>
+        I live in Pune, India. You can find me on <a
+          href="https://www.linkedin.com/in/agnimitrapathak"
+          target="_blank"
+          rel="noopener">LinkedIn</a
+        > or reach out to me via <a href="mailto:agnimitra.vr@gmail.com"
+          >Email</a
+        >.
       </p>
     </Hero>
 
     <Timeline />
-
-    {
-      recentStudies.length > 0 && (
-        <section class="portfolio-teaser">
-          <div class="teaser-header">
-            <span class="section-label">Selected Work</span>
-            <a href="/portfolio" class="teaser-link">
-              View all →
-            </a>
-          </div>
-          <div class="teaser-grid">
-            {recentStudies.map((study) => (
-              <article class="teaser-card">
-                <span class="teaser-meta">
-                  {study.data.role} · {study.data.year}
-                </span>
-                <h3 class="teaser-title">{study.data.title}</h3>
-                <p class="teaser-summary">{study.data.summary}</p>
-              </article>
-            ))}
-          </div>
-          <a href="/portfolio" class="btn btn-outline portfolio-cta">
-            Explore portfolio
-          </a>
-        </section>
-      )
-    }
   </main>
   <Footer />
 </BaseLayout>
 
 <style>
   .main {
-    padding-bottom: var(--space-10);
-  }
-
-  .portfolio-teaser {
-    padding: var(--space-6) 0 var(--space-8);
-    border-top: 1px solid var(--color-border-subtle);
-  }
-
-  .teaser-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: var(--space-5);
-  }
-
-  .section-label {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-text-muted);
-  }
-
-  .teaser-link {
-    font-size: var(--text-xs);
-    color: var(--color-text-muted);
-    text-decoration: none;
-  }
-
-  .teaser-link:hover {
-    color: var(--color-text);
-  }
-
-  .teaser-grid {
-    display: grid;
-    gap: var(--space-4);
-    margin-bottom: var(--space-6);
-  }
-
-  @media (min-width: 768px) {
-    .teaser-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .teaser-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-
-  .teaser-card {
-    padding: var(--space-5);
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border-subtle);
-    border-radius: var(--radius-md);
-  }
-
-  .teaser-meta {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    color: var(--color-text-muted);
-    display: block;
-    margin-bottom: var(--space-2);
-  }
-
-  .teaser-title {
-    font-size: var(--text-base);
-    font-weight: 600;
-    margin-bottom: var(--space-2);
-  }
-
-  .teaser-summary {
-    font-size: var(--text-sm);
-    color: var(--color-text-secondary);
-    margin: 0;
-    line-height: 1.5;
-  }
-
-  .portfolio-cta {
-    display: inline-flex;
+    padding-bottom: var(--space-6);
   }
 </style>
