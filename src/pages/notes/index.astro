@@ -5,11 +5,14 @@ import { getCollection } from "astro:content";
 
 const notes = await getCollection("notes", ({ data }) => !data.draft);
 const sortedNotes = notes.sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
-<PageLayout title="Notes" description="Thoughts on design, research, and building products.">
+<PageLayout
+  title="Notes"
+  description="Thoughts on design, research, and building products."
+>
   <h1 class="page-title">Notes</h1>
   <p class="page-intro">
     Thoughts on design, research, and building products. Less polished than case

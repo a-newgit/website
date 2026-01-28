@@ -17,7 +17,14 @@ const { title, summary, slug, role, year, tags = [], coverImage } = Astro.props;
     {
       coverImage && (
         <div class="card-image">
-          <img src={coverImage.src} alt="" loading="lazy" />
+          <img
+            src={coverImage.src}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            width={coverImage.width}
+            height={coverImage.height}
+          />
         </div>
       )
     }
@@ -47,7 +54,9 @@ const { title, summary, slug, role, year, tags = [], coverImage } = Astro.props;
     border: 1px solid var(--color-border-subtle);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    transition:
+      border-color var(--transition-fast),
+      box-shadow var(--transition-fast);
   }
 
   .case-study-card:hover {

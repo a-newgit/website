@@ -23,7 +23,9 @@ const isEmbed = isYouTube || isVimeo;
 
 function getEmbedUrl(url: string): string {
   if (isYouTube) {
-    const videoId = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^&?/]+)/)?.[1];
+    const videoId = url.match(
+      /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^&?/]+)/,
+    )?.[1];
     return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
   }
   if (isVimeo) {

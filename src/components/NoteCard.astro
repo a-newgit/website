@@ -18,7 +18,9 @@ const formattedDate = pubDate.toLocaleDateString("en-US", {
 
 <article class="note-card">
   <a href={`/notes/${slug}`} class="card-link">
-    <time class="card-date" datetime={pubDate.toISOString()}>{formattedDate}</time>
+    <time class="card-date" datetime={pubDate.toISOString()}
+      >{formattedDate}</time
+    >
     <h3 class="card-title">{title}</h3>
     <p class="card-description">{description}</p>
     {

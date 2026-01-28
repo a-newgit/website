@@ -13,15 +13,19 @@ if (isAuthenticated) {
 }
 
 const error = Astro.url.searchParams.get("error");
-const errorMessage = error === "invalid" ? "Invalid password. Please try again." : undefined;
+const errorMessage =
+  error === "invalid" ? "Invalid password. Please try again." : undefined;
 ---
 
-<PageLayout title="Portfolio Login" description="Enter password to view portfolio">
+<PageLayout
+  title="Portfolio Login"
+  description="Enter password to view portfolio"
+>
   <div class="login-page">
     <h1 class="login-title">Portfolio</h1>
     <p class="login-description">
-      This portfolio contains detailed case studies of my work. Enter the password
-      to continue.
+      This portfolio contains detailed case studies of my work. Enter the
+      password to continue.
     </p>
     <PasswordForm error={errorMessage} />
   </div>

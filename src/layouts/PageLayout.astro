@@ -15,7 +15,7 @@ const { title, description, image, wide = false } = Astro.props;
 
 <BaseLayout title={title} description={description} image={image}>
   <Header />
-  <main class:list={["main", { wide }]}>
+  <main id="main-content" class:list={["main", { wide }]}>
     <slot />
   </main>
   <Footer />

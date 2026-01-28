@@ -6,12 +6,24 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "eslint . --ext .js,.ts,.astro",
+    "lint:fix": "eslint . --ext .js,.ts,.astro --fix",
+    "format": "prettier --write \"src/**/*.{astro,ts,js,css,md}\""
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
     "@astrojs/netlify": "^6.6.4",
+    "@astrojs/sitemap": "^3.3.0",
     "astro": "^5.16.15",
     "jose": "^6.1.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-plugin-astro": "^1.3.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "prettier": "^3.3.0",
+    "prettier-plugin-astro": "^0.14.0"
   }
 }

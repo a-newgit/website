@@ -6,11 +6,17 @@ import Hero from "../components/Hero.astro";
 import Timeline from "../components/Timeline.astro";
 import { getCollection } from "astro:content";
 
-const caseStudies = await getCollection("case-studies", ({ data }) => !data.draft);
+const caseStudies = await getCollection(
+  "case-studies",
+  ({ data }) => !data.draft,
+);
 const recentStudies = caseStudies.slice(0, 3);
 ---
 
-<BaseLayout title="Design Portfolio" description="Product designer specializing in complex systems and user-centered design.">
+<BaseLayout
+  title="Design Portfolio"
+  description="Product designer specializing in complex systems and user-centered design."
+>
   <Header />
   <main class="main container">
     <Hero

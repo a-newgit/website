@@ -13,7 +13,10 @@ if (!isAuthenticated) {
   return Astro.redirect("/portfolio/login");
 }
 
-const caseStudies = await getCollection("case-studies", ({ data }) => !data.draft);
+const caseStudies = await getCollection(
+  "case-studies",
+  ({ data }) => !data.draft,
+);
 const sortedStudies = caseStudies.sort((a, b) => {
   const yearA = parseInt(a.data.year.split("-")[0]);
   const yearB = parseInt(b.data.year.split("-")[0]);
@@ -21,12 +24,16 @@ const sortedStudies = caseStudies.sort((a, b) => {
 });
 ---
 
-<PageLayout title="Portfolio" description="Design case studies and project work." wide>
+<PageLayout
+  title="Portfolio"
+  description="Design case studies and project work."
+  wide
+>
   <header class="portfolio-header">
     <h1 class="portfolio-title">Portfolio</h1>
     <p class="portfolio-intro">
-      A collection of case studies exploring how design can solve complex problems.
-      Each project represents a journey from ambiguity to clarity.
+      A collection of case studies exploring how design can solve complex
+      problems. Each project represents a journey from ambiguity to clarity.
     </p>
     <form action="/api/logout" method="POST" class="logout-form">
       <button type="submit" class="logout-btn">Log out</button>

@@ -9,14 +9,13 @@ const { url, title = "Figma prototype" } = Astro.props;
 
 <figure class="figma-embed">
   <div class="embed-wrapper">
-    <iframe
-      src={url}
-      title={title}
-      allowfullscreen
-      loading="lazy"
-    ></iframe>
+    <iframe src={url} title={title} allowfullscreen loading="lazy"></iframe>
   </div>
-  {title && title !== "Figma prototype" && <figcaption class="caption">{title}</figcaption>}
+  {
+    title && title !== "Figma prototype" && (
+      <figcaption class="caption">{title}</figcaption>
+    )
+  }
 </figure>
 
 <style>

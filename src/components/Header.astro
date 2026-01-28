@@ -9,7 +9,7 @@ const navItems = [
 ---
 
 <header class="header">
-  <nav class="nav container">
+  <nav class="nav container" aria-label="Main navigation">
     <a href="/" class="logo">Portfolio</a>
     <ul class="nav-list">
       {
@@ -17,7 +17,14 @@ const navItems = [
           <li>
             <a
               href={item.href}
-              class:list={["nav-link", { active: pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href)) }]}
+              class:list={[
+                "nav-link",
+                {
+                  active:
+                    pathname === item.href ||
+                    (item.href !== "/" && pathname.startsWith(item.href)),
+                },
+              ]}
             >
               {item.label}
             </a>

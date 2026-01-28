@@ -10,7 +10,11 @@ const { images, cols = 2, caption } = Astro.props;
 
 <figure class="image-grid">
   <div class:list={["grid", `cols-${cols}`]}>
-    {images.map((src, i) => <img src={src} alt={`Image ${i + 1}`} loading="lazy" />)}
+    {
+      images.map((src, i) => (
+        <img src={src} alt={`Image ${i + 1}`} loading="lazy" decoding="async" />
+      ))
+    }
   </div>
   {caption && <figcaption class="caption">{caption}</figcaption>}
 </figure>

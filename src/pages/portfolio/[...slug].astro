@@ -39,13 +39,25 @@ const { Content } = await render(study);
   <main class="case-study">
     <header class="study-header container">
       <div class="study-meta">
-        {study.data.client && <span class="meta-item">{study.data.client}</span>}
+        {
+          study.data.client && (
+            <span class="meta-item">{study.data.client}</span>
+          )
+        }
         <span class="meta-item">{study.data.role}</span>
         <span class="meta-item">{study.data.year}</span>
-        {study.data.duration && <span class="meta-item">{study.data.duration}</span>}
+        {
+          study.data.duration && (
+            <span class="meta-item">{study.data.duration}</span>
+          )
+        }
       </div>
       <h1 class="study-title">{study.data.title}</h1>
-      {study.data.subtitle && <p class="study-subtitle">{study.data.subtitle}</p>}
+      {
+        study.data.subtitle && (
+          <p class="study-subtitle">{study.data.subtitle}</p>
+        )
+      }
       <p class="study-summary">{study.data.summary}</p>
 
       <div class="study-details">
