@@ -45,8 +45,8 @@
   --color-text-muted: #737373;
 
   /* Accent color (configurable) */
-  --color-accent: #1a1a1a;
-  --color-accent-hover: #404040;
+  --color-accent: #e5ad9f;
+  --color-accent-hover: #d4978a;
 
   /* Spacing scale */
   --space-1: 0.25rem;
@@ -63,8 +63,8 @@
   --space-24: 6rem;
 
   /* Layout */
-  --max-width: 72rem;
-  --content-width: 42rem;
+  --max-width: 60rem;
+  --content-width: 40rem;
   --sidebar-width: 16rem;
 
   /* Transitions */

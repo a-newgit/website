@@ -28,3 +28,6 @@ pnpm-debug.log*
 
 # Claude Code session data
 .claude/
+
+# MCP config (contains tokens)
+.mcp.json
