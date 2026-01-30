@@ -1,3 +1,83 @@
 ---
-// Header intentionally empty - skip link is in BaseLayout
+const currentPath = Astro.url.pathname;
 ---
+
+<header class="header container">
+  <a href="/" class="site-name">Agnimitra Pathak</a>
+  <nav class="nav" aria-label="Main navigation">
+    <ul class="nav-list">
+      <li>
+        <a
+          href="/portfolio"
+          class:list={[{ active: currentPath.startsWith("/portfolio") }]}
+          >Work</a
+        >
+      </li>
+      <li class="nav-separator">•</li>
+      <li>
+        <a
+          href="/notes"
+          class:list={[{ active: currentPath.startsWith("/notes") }]}>Notes</a
+        >
+      </li>
+      <li class="nav-separator">•</li>
+      <li><a href="mailto:agnimitra.vr@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-6);
+  }
+
+  .site-name {
+    font-size: var(--text-base);
+    font-weight: 400;
+    color: var(--color-text);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .site-name:hover {
+    color: var(--color-text-secondary);
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-separator {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+  }
+
+  .nav-list a {
+    font-size: var(--text-base);
+    color: var(--color-text);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-list a:hover,
+  .nav-list a.active {
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 480px) {
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-4);
+    }
+  }
+</style>

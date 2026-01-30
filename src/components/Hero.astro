@@ -1,48 +1,34 @@
 ---
 interface Props {
-  name: string;
+  headline: string;
   photo?: string;
 }
 
-const { name, photo } = Astro.props;
+const { headline, photo } = Astro.props;
 ---
 
 <section class="hero">
-  <div class="hero-header">
-    <h1 class="hero-name">{name}</h1>
+  <div class="hero-grid">
+    <div class="hero-content">
+      <h1 class="hero-headline">{headline}</h1>
+      <div class="hero-intro">
+        <slot />
+      </div>
+    </div>
     {
       photo && (
-        <img
-          src={photo}
-          alt={name}
-          class="hero-photo"
-          width="96"
-          height="96"
-          decoding="async"
-        />
+        <div class="hero-photo-wrapper">
+          <img
+            src={photo}
+            alt="Agnimitra Pathak"
+            class="hero-photo"
+            width="400"
+            height="280"
+            decoding="async"
+          />
+        </div>
       )
     }
-  </div>
-  <a href="/portfolio" class="portfolio-link">
-    <svg
-      class="portfolio-icon"
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <path
-        d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"
-      ></path>
-    </svg>
-    Portfolio <span class="arrow">→</span>
-  </a>
-  <div class="hero-intro">
-    <slot />
   </div>
 </section>
 
@@ -51,60 +37,35 @@ const { name, photo } = Astro.props;
     padding: var(--space-12) 0 var(--space-8);
   }
 
-  .hero-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: var(--space-6);
-    margin-bottom: var(--space-4);
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: start;
   }
 
-  .hero-name {
-    font-size: var(--text-4xl);
-    font-weight: 500;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
+  @media (min-width: 640px) {
+    .hero-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+    }
   }
 
-  .hero-photo {
-    width: 96px;
-    height: 96px;
-    border-radius: 50%;
-    object-fit: cover;
-    flex-shrink: 0;
+  .hero-content {
+    max-width: 32rem;
   }
 
-  .portfolio-link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-size: var(--text-base);
-    color: var(--color-text);
-    text-decoration: none;
+  .hero-headline {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
     margin-bottom: var(--space-6);
-  }
-
-  .portfolio-link:hover {
-    color: var(--color-text-secondary);
-  }
-
-  .portfolio-icon {
-    width: 16px;
-    height: 16px;
-  }
-
-  .arrow {
-    transition: transform var(--transition-fast);
-  }
-
-  .portfolio-link:hover .arrow {
-    transform: translateX(2px);
   }
 
   .hero-intro {
     font-size: var(--text-base);
     line-height: 1.75;
-    max-width: var(--content-width);
     color: var(--color-text);
   }
 
@@ -126,17 +87,28 @@ const { name, photo } = Astro.props;
     color: var(--color-text-secondary);
   }
 
-  /* Mobile: photo above name */
+  .hero-photo-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .hero-photo {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Mobile: photo above content */
   @media (max-width: 639px) {
-    .hero-header {
+    .hero-grid {
+      display: flex;
       flex-direction: column-reverse;
-      align-items: flex-start;
-      gap: var(--space-4);
     }
 
     .hero-photo {
-      width: 72px;
-      height: 72px;
+      max-width: 100%;
     }
   }
 </style>

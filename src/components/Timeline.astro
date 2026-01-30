@@ -8,13 +8,15 @@ interface TimelineItem {
   role: string;
   years: string;
   color?: string;
+  description?: string;
+  bullets?: string[];
 }
 
 const timeline: TimelineItem[] = timelineData;
 ---
 
 <section class="timeline-section">
-  <span class="section-label">Work experience</span>
+  <h2 class="section-heading">Career</h2>
   <div class="timeline">
     {
       timeline.map((item) => (
@@ -24,6 +26,8 @@ const timeline: TimelineItem[] = timelineData;
           role={item.role}
           years={item.years}
           color={item.color}
+          description={item.description}
+          bullets={item.bullets}
         />
       ))
     }
@@ -35,15 +39,13 @@ const timeline: TimelineItem[] = timelineData;
     padding: var(--space-8) 0;
   }
 
-  .section-label {
-    display: block;
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-4);
-    font-weight: 400;
+  .section-heading {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-6);
   }
 
   .timeline {
-    max-width: var(--content-width);
+    max-width: var(--max-width);
   }
 </style>

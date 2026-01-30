@@ -2,36 +2,48 @@
   {
     "company": "Alteryx",
     "url": "https://www.alteryx.com",
-    "role": "Sr. Product Designer",
-    "years": "2022–Now",
-    "color": "#E87722"
+    "role": "Senior Designer",
+    "years": "2022 – Now",
+    "color": "#6B4D9E",
+    "description": "I led the connectivity, extract and publish experience within Alteryx. Collaborated with teams across multiple efforts.",
+    "bullets": [
+      "Input / Output Experience – Evolving from project Firefly to unified experience across desktop and cloud.",
+      "Connectivity – AI infused connection creation and troubleshooting.",
+      "Parameterization",
+      "Infrastructure – SSO and Private Data Handling",
+      "Rebranding from Trifacta to Alteryx"
+    ]
   },
   {
     "company": "Trifacta",
     "url": "https://www.trifacta.com",
-    "role": "Sr. Product Designer",
-    "years": "2020–2022",
-    "color": "#0D9488"
+    "role": "Senior Designer",
+    "years": "2020 – 2022",
+    "color": "#737373",
+    "description": "I led the connectivity initiative, designing for scale on long tail connector needs of customers. I then transitioned to infrastructure, extract and publishing experience. As part of Trifacta, we scaled the cloud story to $20 million ARR and got acquired by Alteryx."
   },
   {
     "company": "Lentra AI",
     "url": "https://www.lentra.ai",
-    "role": "Product Designer",
-    "years": "2018–2020",
-    "color": "#6B7280"
+    "role": "Designer",
+    "years": "2018 – 2020",
+    "color": "#C4632D",
+    "description": "As sole designer my initial primary tasks revolved around field research and stakeholder interviews. Collaborated with product owners to envisage lending experience in consumer durables, micros finance and affordable housing verticals across top financial institutes like HDBFS, Federal Bank, Aditya Birla Capital and HDFC Bank. Grew from sole designer to a team of 4."
   },
   {
     "company": "Monjin Interviews",
     "url": "https://www.monjin.com",
-    "role": "UX Designer",
-    "years": "2014–2018",
-    "color": "#1E3A5F"
+    "role": "Designer",
+    "years": "2014 – 2018",
+    "color": "#4B8B3B",
+    "description": "Built and maintained visual design library from ground up for an interviewing platform serviced to MNCs like Accenture and KPIT. A part of the portfolio also serviced interviewing candidates for Yachting companies in Malta."
   },
   {
     "company": "Nityaa Labs",
     "url": "https://yourstory.com/2014/02/airstream-io-150000-downloads",
     "role": "Co-Founder",
-    "years": "2011–2014",
-    "color": "#9CA3AF"
+    "years": "2011 – 2014",
+    "color": "#3B5998",
+    "description": "Spearheaded company operations, design and investor relations. Raised angel capital to operate mobile based app called AirStream – Connect and stream content from your devices on mobile. Achieved 1,50,000 downloads."
   }
 ]

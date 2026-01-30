@@ -5,57 +5,97 @@ interface Props {
   role: string;
   years: string;
   color?: string;
+  description?: string;
+  bullets?: string[];
 }
 
-const { company, url, role, years, color = "#6B7280" } = Astro.props;
+const {
+  company,
+  url,
+  role,
+  years,
+  color = "#6B7280",
+  description,
+  bullets,
+} = Astro.props;
 ---
 
 <article class="timeline-entry">
-  <div class="timeline-left">
+  <div class="timeline-header">
     <span class="timeline-marker" style={`background-color: ${color};`}></span>
+    <span class="timeline-years">{years}</span>
+  </div>
+  <div class="timeline-content">
+    <h3 class="timeline-role">
+      {role} at{" "}
+      {
+        url ? (
+          <a href={url} target="_blank" rel="noopener" class="timeline-company">
+            {company}
+          </a>
+        ) : (
+          <span class="timeline-company">{company}</span>
+        )
+      }
+    </h3>
+    {description && <p class="timeline-description">{description}</p>}
     {
-      url ? (
-        <a href={url} target="_blank" rel="noopener" class="timeline-company">
-          {company}
-        </a>
-      ) : (
-        <span class="timeline-company">{company}</span>
+      bullets && bullets.length > 0 && (
+        <ul class="timeline-bullets">
+          {bullets.map((bullet) => (
+            <li class="timeline-bullet">
+              <span class="bullet-arrow">→</span>
+              {bullet}
+            </li>
+          ))}
+        </ul>
       )
     }
-  </div>
-  <div class="timeline-right">
-    <span class="timeline-role">{role}</span>
-    <span class="timeline-years">{years}</span>
   </div>
 </article>
 
 <style>
   .timeline-entry {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-4);
-    padding: var(--space-3) 0;
-    align-items: baseline;
+    padding: var(--space-6) 0;
   }
 
-  .timeline-left {
+  .timeline-entry:first-child {
+    padding-top: 0;
+  }
+
+  .timeline-header {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: var(--space-3);
+    margin-bottom: var(--space-2);
   }
 
   .timeline-marker {
-    width: 10px;
-    height: 10px;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
     border-radius: 2px;
     flex-shrink: 0;
-    position: relative;
-    top: 1px;
+  }
+
+  .timeline-years {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .timeline-content {
+    padding-left: calc(12px + var(--space-3));
+  }
+
+  .timeline-role {
+    font-size: var(--text-base);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+    line-height: 1.4;
   }
 
   .timeline-company {
-    font-size: var(--text-base);
-    font-weight: 400;
+    font-weight: 600;
     color: var(--color-text);
     text-decoration: underline;
     text-underline-offset: 0.2em;
@@ -65,32 +105,35 @@ const { company, url, role, years, color = "#6B7280" } = Astro.props;
     color: var(--color-text-secondary);
   }
 
-  .timeline-right {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--space-4);
-  }
-
-  .timeline-role {
+  .timeline-description {
     font-size: var(--text-base);
+    line-height: 1.7;
     color: var(--color-text);
+    margin-bottom: var(--space-3);
+    max-width: 52rem;
   }
 
-  .timeline-years {
+  .timeline-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .timeline-bullet {
+    display: flex;
+    gap: var(--space-2);
     font-size: var(--text-base);
-    color: var(--color-text-muted);
-    white-space: nowrap;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
   }
 
-  /* Mobile: stack layout */
-  @media (max-width: 639px) {
-    .timeline-entry {
-      grid-template-columns: 1fr;
-      gap: var(--space-1);
-    }
+  .timeline-bullet:last-child {
+    margin-bottom: 0;
+  }
 
-    .timeline-right {
-      padding-left: calc(10px + var(--space-3));
-    }
+  .bullet-arrow {
+    flex-shrink: 0;
+    color: var(--color-text-muted);
   }
 </style>
